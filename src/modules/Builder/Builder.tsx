@@ -12,15 +12,15 @@ export const Builder = () => {
   return (
     <>
       {formFields.length ? (
-        formFields.map((formField) => (
+        formFields.map((formField, index) => (
           <Grid
-            key={Math.random()}
+            key={`builder-field-${index}`}
             container
             item
             alignItems="center"
             justify="space-around"
           >
-            <FormField formField={formField} />
+            <FormField id={index} formField={formField} />
           </Grid>
         ))
       ) : (

@@ -11,3 +11,8 @@ export const addFormField = createAction(
   '[appData] add form field',
   (resolve) => (formField: IFormField) => resolve(formField),
 );
+
+export const removeFormField = createAction(
+  '[appData] remove form field',
+  (resolve) => (formFieldId: number) => resolve(formFieldId),
+);
