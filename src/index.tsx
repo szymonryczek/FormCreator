@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './Root';
+import { createStore } from '~/store/configure';
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+const store = createStore();
+
+ReactDOM.render(<Root store={store} />, document.getElementById('root'));
