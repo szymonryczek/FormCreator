@@ -1,5 +1,6 @@
 import { createReducer } from 'deox';
-import { changeTab } from '~/store';
+
+import { changeTab } from '../actions';
 
 const initialState = {
   tabId: 0,
@@ -8,6 +9,6 @@ const initialState = {
 export const appData = createReducer(initialState, (handleAction) => [
   handleAction(changeTab, (state, { payload: tabId }) => ({
     ...state,
-    tabId: tabId,
+    tabId,
   })),
 ]);

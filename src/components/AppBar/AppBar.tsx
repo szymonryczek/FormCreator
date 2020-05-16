@@ -1,8 +1,9 @@
-import { Tab, Tabs, AppBar as MaterialBar } from '@material-ui/core';
 import React from 'react';
+import { Tab, Tabs, AppBar as MaterialBar } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { changeTab } from '~/store';
-import { getTabId } from '~/store/selectors/appData';
+import { getTabId } from '~/store/selectors';
 
 const a11yProps = (index: any) => {
   return {

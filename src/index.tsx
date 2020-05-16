@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './Root';
 import { createStore } from '~/store/configure';
+import Root from './Root';
 
 const store = createStore();
 

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Avatar, Grid } from '@material-ui/core';
 
 export const AppHeader = () => (

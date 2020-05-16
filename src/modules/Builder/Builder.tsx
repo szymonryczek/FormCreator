@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   createStyles,
   FormControl,
@@ -6,13 +8,10 @@ import {
   MenuItem,
   Select,
   TextField,
-  Theme,
 } from '@material-ui/core';
-import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     button: {
       display: 'block',
@@ -21,18 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
     formControl: {
       margin: theme.spacing(1),
       minWidth: 120,
-    },
-    fab: {
-      position: 'absolute',
-      bottom: theme.spacing(-3),
-      right: theme.spacing(2),
-    },
-    fabGreen: {
-      color: theme.palette.common.white,
-      backgroundColor: green[500],
-      '&:hover': {
-        backgroundColor: green[600],
-      },
     },
   }),
 );
