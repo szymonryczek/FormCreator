@@ -6,9 +6,10 @@ import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import clsx from 'clsx';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { getTabId } from '~/store/selectors';
+import { addFormField } from '~/store';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -35,7 +36,12 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Fabs = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const dispatch = useDispatch();
   const tabId = useSelector(getTabId);
+
+  const OnAddFormField = () => {
+    dispatch(addFormField({}));
+  };
 
   const fabs = [
     {
@@ -43,18 +49,21 @@ export const Fabs = () => {
       className: classes.fab,
       icon: <AddIcon />,
       label: 'Add',
+      onClick: OnAddFormField,
     },
     {
       color: 'secondary' as 'secondary',
       className: classes.fab,
       icon: <EditIcon />,
       label: 'Edit',
+      onClick: OnAddFormField,
     },
     {
       color: 'inherit' as 'inherit',
       className: clsx(classes.fab, classes.fabGreen),
       icon: <UpIcon />,
       label: 'Expand',
+      onClick: OnAddFormField,
     },
   ];
 
@@ -81,6 +90,7 @@ export const Fabs = () => {
             aria-label={fab.label}
             className={fab.className}
             color={fab.color}
+            onClick={fab.onClick}
           >
             {fab.icon}
           </Fab>

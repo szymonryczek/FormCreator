@@ -1,14 +1,20 @@
 import { createReducer } from 'deox';
 
-import { changeTab } from '../actions';
+import { addFormField, changeTab } from '../actions';
+import { IFormField } from '~/types';
 
 const initialState = {
   tabId: 0,
+  forms: [] as IFormField[],
 };
 
 export const appData = createReducer(initialState, (handleAction) => [
   handleAction(changeTab, (state, { payload: tabId }) => ({
     ...state,
     tabId,
+  })),
+  handleAction(addFormField, (state, { payload: formField }) => ({
+    ...state,
+    forms: [...state.forms, formField],
   })),
 ]);

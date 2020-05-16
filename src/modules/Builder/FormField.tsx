@@ -9,6 +9,7 @@ import {
   TextField,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { IFormField } from '~/types';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -23,7 +24,11 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-export const FormField = () => {
+type Props = {
+  formField: IFormField;
+};
+
+export const FormField = ({ formField }: Props) => {
   const [fieldType, setFieldType] = React.useState<string | number>('');
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
