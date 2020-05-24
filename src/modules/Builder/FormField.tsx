@@ -12,7 +12,6 @@ import {
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
-
 import { IFormField } from '~/types';
 import { useDispatch } from 'react-redux';
 import { changeInputType, removeFormField } from '~/store';
@@ -80,11 +79,11 @@ export const FormField = ({ id, formField }: Props) => {
 
   return (
     <Grid container spacing={1} alignItems="center">
-      <Grid item xs={1}>
+      <Grid item xs={2}>
         <TextField required label="Nazwa" value={`Field#${id}`} />
       </Grid>
 
-      <Grid item xs={1}>
+      <Grid item xs={2}>
         <TextField
           required
           label="Etykieta"
@@ -117,7 +116,11 @@ export const FormField = ({ id, formField }: Props) => {
         </FormControl>
       </Grid>
 
-      {/*<TextField required label="Wartość" />*/}
+      {fieldType === 'Select' && (
+        <>
+          <TextField id="outlined-basic" label="Option" variant="outlined" />
+        </>
+      )}
 
       <IconButton
         aria-label="delete"
