@@ -1,57 +1,48 @@
 import React from 'react';
-import {
-  Container,
-  createStyles,
-  Paper,
-  Theme,
-  useTheme,
-} from '@material-ui/core';
+import { Card, createStyles, Grid, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
-import SwipeableViews from 'react-swipeable-views';
 
-import { AppBar, AppHeader, Fabs, TabPanel } from '~/components';
-import { Builder, FormsList, Previewer } from '~/modules';
-import { getTabId } from '~/store/selectors';
+import { AppHeader, Fabs } from '~/components';
+import { Builder, Previewer } from '~/modules';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       backgroundColor: theme.palette.background.paper,
-      position: 'relative',
-      minHeight: 200,
+      height: 'calc(100vh - 90px)',
     },
   }),
 );
 
 export const Main = () => {
   const classes = useStyles();
-  const theme = useTheme();
-  const tabId = useSelector(getTabId);
 
   return (
-    <Container maxWidth="md" className={classes.root}>
+    <>
       <AppHeader />
-      <AppBar />
 
-      <Paper>
-        <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={tabId}
-        >
-          <TabPanel value={tabId} index={0} dir={theme.direction}>
+      <Grid
+        container
+        item
+        xs={12}
+        justify="space-between"
+        wrap="nowrap"
+        className={classes.root}
+      >
+        <Grid container item xs={6}>
+          <Card style={{ width: '100%' }}>
             <Builder />
-          </TabPanel>
-          <TabPanel value={tabId} index={1} dir={theme.direction}>
-            <Previewer />
-          </TabPanel>
-          <TabPanel value={tabId} index={2} dir={theme.direction}>
-            <FormsList />
-          </TabPanel>
-        </SwipeableViews>
+          </Card>
+        </Grid>
 
-        <Fabs />
-      </Paper>
-    </Container>
+        <Grid container item xs={6}>
+          <Card style={{ width: '100%' }}>
+            <Previewer />
+          </Card>
+        </Grid>
+      </Grid>
+
+      <Fabs />
+    </>
   );
 };

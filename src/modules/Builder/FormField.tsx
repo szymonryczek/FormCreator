@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { IFormField } from '~/types';
 import { useDispatch } from 'react-redux';
-import { removeFormField } from '~/store';
+import { changeInputType, removeFormField } from '~/store';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -45,7 +45,15 @@ export const FormField = ({ id, formField }: Props) => {
   };
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setFieldType(event.target.value as number);
+    const formType = event.target.value as string;
+
+    setFieldType(formType);
+    dispatch(
+      changeInputType({
+        id,
+        formType,
+      }),
+    );
   };
 
   const handleClose = () => {
@@ -74,9 +82,9 @@ export const FormField = ({ id, formField }: Props) => {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Checkbox</MenuItem>
-          <MenuItem value={20}>Select</MenuItem>
-          <MenuItem value={30}>Text area</MenuItem>
+          <MenuItem value={'Checkbox'}>Checkbox</MenuItem>
+          <MenuItem value={'Select'}>Select</MenuItem>
+          <MenuItem value={'Area'}>Text area</MenuItem>
         </Select>
       </FormControl>
 

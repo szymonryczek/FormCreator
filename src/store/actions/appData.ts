@@ -12,6 +12,16 @@ export const addFormField = createAction(
   (resolve) => (formField: IFormField) => resolve(formField),
 );
 
+interface Itest {
+  id: number;
+  formType: string;
+}
+
+export const changeInputType = createAction(
+  '[appData] change form type',
+  (resolve) => (payload: Itest) => resolve(payload),
+);
+
 export const removeFormField = createAction(
   '[appData] remove form field',
   (resolve) => (formFieldId: number) => resolve(formFieldId),
