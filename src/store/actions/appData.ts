@@ -14,7 +14,8 @@ export const addFormField = createAction(
 
 interface Itest {
   id: number;
-  formType: string;
+  label?: string;
+  type?: string;
 }
 
 export const changeInputType = createAction(

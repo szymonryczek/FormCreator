@@ -36,6 +36,7 @@ type Props = {
 
 export const FormField = ({ id, formField }: Props) => {
   const [fieldType, setFieldType] = React.useState<string | number>('');
+  const [label, setLabel] = React.useState<string | number>('');
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -45,13 +46,25 @@ export const FormField = ({ id, formField }: Props) => {
   };
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const formType = event.target.value as string;
+    const type = event.target.value as string;
 
-    setFieldType(formType);
+    setFieldType(type);
     dispatch(
       changeInputType({
         id,
-        formType,
+        type,
+      }),
+    );
+  };
+
+  const handleEtykieta = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const label = event.target.value;
+    setLabel(label);
+
+    dispatch(
+      changeInputType({
+        id,
+        label,
       }),
     );
   };
@@ -67,7 +80,12 @@ export const FormField = ({ id, formField }: Props) => {
   return (
     <>
       <TextField required label="Nazwa" value={`Field#${id}`} />
-      <TextField required label="Etykieta" />
+      <TextField
+        required
+        label="Etykieta"
+        value={label}
+        onChange={handleEtykieta}
+      />
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-controlled-open-select-label">Typ pola</InputLabel>
         <Select

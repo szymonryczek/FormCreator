@@ -22,11 +22,11 @@ export const appData = createReducer(initialState, (handleAction) => [
     ...state,
     forms: [...state.forms, formField],
   })),
-  handleAction(changeInputType, (state, { payload: { id, formType } }) => {
+  handleAction(changeInputType, (state, { payload }) => {
     const newForms = [...state.forms];
-    newForms[id] = {
-      ...state.forms[id],
-      type: formType,
+    newForms[payload.id] = {
+      ...state.forms[payload.id],
+      ...payload,
     };
 
     return {

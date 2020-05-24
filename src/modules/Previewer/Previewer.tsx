@@ -28,7 +28,7 @@ export const Previewer = () => {
               {formField.type === 'Select' && (
                 <>
                   <InputLabel id="demo-controlled-open-select-label">
-                    Typ pola
+                    {formField.label}
                   </InputLabel>
                   <Select
                     labelId="demo-controlled-open-select-label"

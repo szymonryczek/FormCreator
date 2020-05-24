@@ -1,6 +1,6 @@
 export interface IFormField {
   type?: string;
   name?: '';
-  label?: '';
+  label?: string;
   value?: any;
 }
