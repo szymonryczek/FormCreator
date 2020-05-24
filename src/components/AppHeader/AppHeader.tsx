@@ -9,7 +9,7 @@ export const AppHeader = () => (
     </Grid>
 
     <Grid item>
-      <h1>Form Creator</h1>
+      <h1>Magic Form</h1>
     </Grid>
   </Grid>
 );

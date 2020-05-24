@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { getFormFields } from '~/store';
 import {
   createStyles,
+  Divider,
   FormControl,
   Grid,
   InputLabel,
   MenuItem,
-  Paper,
   Select,
   Typography,
 } from '@material-ui/core';
@@ -49,17 +49,19 @@ export const Previewer = () => {
           return (
             <Grid item xs={12}>
               {!formField.type && (
-                <Paper
-                  variant="elevation"
-                  style={{
-                    height: '56px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Typography>Select field type to display</Typography>
-                </Paper>
+                <>
+                  <div
+                    style={{
+                      height: '56px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Typography>Select field type to display</Typography>
+                  </div>
+                  <Divider />
+                </>
               )}
 
               {formField.type === 'Select' && (
@@ -77,12 +79,9 @@ export const Previewer = () => {
                       value={fieldType}
                       onChange={handleChange}
                     >
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
-                      <MenuItem value={'m'}>Mezczyzna</MenuItem>
-                      <MenuItem value={'k'}>Kobieta</MenuItem>
-                      <MenuItem value={'i'}>Inna</MenuItem>
+                      <MenuItem value={'m'}>Dobrze, good</MenuItem>
+                      <MenuItem value={'k'}>:C</MenuItem>
+                      <MenuItem value={'i'}>Nie wiem</MenuItem>
                     </Select>
                   </FormControl>
                 </div>

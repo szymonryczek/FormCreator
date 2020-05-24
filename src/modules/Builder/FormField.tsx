@@ -3,6 +3,7 @@ import React from 'react';
 import {
   createStyles,
   FormControl,
+  Grid,
   IconButton,
   InputLabel,
   MenuItem,
@@ -78,39 +79,54 @@ export const FormField = ({ id, formField }: Props) => {
   };
 
   return (
-    <>
-      <TextField required label="Nazwa" value={`Field#${id}`} />
-      <TextField
-        required
-        label="Etykieta"
-        value={label}
-        onChange={handleEtykieta}
-      />
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">Typ pola</InputLabel>
-        <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={fieldType}
-          onChange={handleChange}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={'Checkbox'}>Checkbox</MenuItem>
-          <MenuItem value={'Select'}>Select</MenuItem>
-          <MenuItem value={'Area'}>Text area</MenuItem>
-        </Select>
-      </FormControl>
+    <Grid container spacing={1} alignItems="center">
+      <Grid item xs={1}>
+        <TextField required label="Nazwa" value={`Field#${id}`} />
+      </Grid>
 
-      <TextField required label="Wartość" />
+      <Grid item xs={1}>
+        <TextField
+          required
+          label="Etykieta"
+          value={label}
+          onChange={handleEtykieta}
+        />
+      </Grid>
 
-      <IconButton aria-label="delete" color="secondary" onClick={onRemoveField}>
+      <Grid item xs={2}>
+        <FormControl className={classes.formControl}>
+          <InputLabel id="demo-controlled-open-select-label">
+            Typ pola
+          </InputLabel>
+          <Select
+            labelId="demo-controlled-open-select-label"
+            id="demo-controlled-open-select"
+            open={open}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            value={fieldType}
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={'Checkbox'}>Checkbox</MenuItem>
+            <MenuItem value={'Select'}>Select</MenuItem>
+            <MenuItem value={'Area'}>Text area</MenuItem>
+          </Select>
+        </FormControl>
+      </Grid>
+
+      {/*<TextField required label="Wartość" />*/}
+
+      <IconButton
+        aria-label="delete"
+        color="secondary"
+        onClick={onRemoveField}
+        style={{ marginLeft: 'auto' }}
+      >
         <DeleteIcon />
       </IconButton>
-    </>
+    </Grid>
   );
 };
