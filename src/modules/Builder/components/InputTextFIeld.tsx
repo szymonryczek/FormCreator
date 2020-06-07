@@ -1,16 +1,16 @@
 import { TextField } from '@material-ui/core';
 import React from 'react';
 
-const values = [
-  {
-    values: '1',
-    label: 'tak',
-  },
-  {
-    values: '2',
-    label: 'nie',
-  },
-];
+// const values = [
+//   {
+//     values: '1',
+//     label: 'tak',
+//   },
+//   {
+//     values: '2',
+//     label: 'nie',
+//   },
+// ];
 
 export const InputTextField = () => {
   const [value, setValue] = React.useState('');
