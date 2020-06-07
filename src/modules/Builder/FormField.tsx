@@ -5,7 +5,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { IFormField } from '~/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeInputType, getFormField, removeFormField } from '~/store';
-import { SelectField } from '~/modules/Builder/components';
+import { InputTextField, SelectField } from '~/modules/Builder/components';
 
 type Props = {
   id: number;
@@ -52,11 +52,7 @@ export const FormField = ({ id }: Props) => {
         <SelectField id={id} />
       </Grid>
 
-      {formField.type === 'Select' && (
-        <>
-          <TextField id="outlined-basic" label="Option" variant="outlined" />
-        </>
-      )}
+      {formField.type === 'Select' && <InputTextField />}
 
       <IconButton
         aria-label="delete"
