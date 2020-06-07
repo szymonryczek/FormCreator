@@ -1,60 +1,24 @@
 import React from 'react';
 
-import {
-  createStyles,
-  FormControl,
-  Grid,
-  IconButton,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from '@material-ui/core';
+import { Grid, IconButton, TextField } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { makeStyles } from '@material-ui/core/styles';
 import { IFormField } from '~/types';
-import { useDispatch } from 'react-redux';
-import { changeInputType, removeFormField } from '~/store';
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    button: {
-      display: 'block',
-      marginTop: theme.spacing(2),
-    },
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-    },
-  }),
-);
+import { useDispatch, useSelector } from 'react-redux';
+import { changeInputType, getFormField, removeFormField } from '~/store';
+import { SelectField } from '~/modules/Builder/components';
 
 type Props = {
   id: number;
-  formField: IFormField;
+  formField?: IFormField;
 };
 
-export const FormField = ({ id, formField }: Props) => {
-  const [fieldType, setFieldType] = React.useState<string | number>('');
+export const FormField = ({ id }: Props) => {
   const [label, setLabel] = React.useState<string | number>('');
-  const [open, setOpen] = React.useState(false);
-  const classes = useStyles();
   const dispatch = useDispatch();
+  const formField = useSelector(getFormField(id));
 
   const onRemoveField = () => {
     dispatch(removeFormField(id));
-  };
-
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const type = event.target.value as string;
-
-    setFieldType(type);
-    dispatch(
-      changeInputType({
-        id,
-        type,
-      }),
-    );
   };
 
   const handleEtykieta = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,14 +31,6 @@ export const FormField = ({ id, formField }: Props) => {
         label,
       }),
     );
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
   };
 
   return (
@@ -93,30 +49,10 @@ export const FormField = ({ id, formField }: Props) => {
       </Grid>
 
       <Grid item xs={2}>
-        <FormControl className={classes.formControl}>
-          <InputLabel id="demo-controlled-open-select-label">
-            Typ pola
-          </InputLabel>
-          <Select
-            labelId="demo-controlled-open-select-label"
-            id="demo-controlled-open-select"
-            open={open}
-            onClose={handleClose}
-            onOpen={handleOpen}
-            value={fieldType}
-            onChange={handleChange}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={'Checkbox'}>Checkbox</MenuItem>
-            <MenuItem value={'Select'}>Select</MenuItem>
-            <MenuItem value={'Area'}>Text area</MenuItem>
-          </Select>
-        </FormControl>
+        <SelectField id={id} />
       </Grid>
 
-      {fieldType === 'Select' && (
+      {formField.type === 'Select' && (
         <>
           <TextField id="outlined-basic" label="Option" variant="outlined" />
         </>
