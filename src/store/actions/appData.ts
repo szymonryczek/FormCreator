@@ -12,6 +12,11 @@ export const addFormField = createAction(
   (resolve) => (formField: IFormField) => resolve(formField),
 );
 
+export const updateFieldValues = createAction(
+  '[appData] update fields values',
+  (resolve) => (fieldValues: any) => resolve(fieldValues),
+);
+
 interface Itest {
   id: number;
   label?: string;
