@@ -79,9 +79,10 @@ export const Previewer = () => {
                       value={fieldType}
                       onChange={handleChange}
                     >
+                      {console.log('formField', formField.value)}
                       <MenuItem value={'m'}>Dobrze, good</MenuItem>
-                      <MenuItem value={'k'}>:C</MenuItem>
-                      <MenuItem value={'i'}>Nie wiem</MenuItem>
+                      {/*<MenuItem value={'k'}>:C</MenuItem>*/}
+                      {/*<MenuItem value={'i'}>Nie wiem</MenuItem>*/}
                     </Select>
                   </FormControl>
                 </div>

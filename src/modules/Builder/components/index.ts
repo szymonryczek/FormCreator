@@ -1,2 +1,2 @@
+export * from './ChoiceFieldType';
 export * from './SelectField';
-export * from './InputTextFIeld';

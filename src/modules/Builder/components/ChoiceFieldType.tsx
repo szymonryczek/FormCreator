@@ -23,7 +23,7 @@ type Props = {
   id: number;
 };
 
-export const SelectField = ({ id }: Props) => {
+export const ChoiceFieldType = ({ id }: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [fieldType, setFieldType] = React.useState<string | number>('');
