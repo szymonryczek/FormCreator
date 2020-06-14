@@ -9,6 +9,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  TextField,
   Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -85,6 +86,27 @@ export const Previewer = () => {
                     </Select>
                   </FormControl>
                 </div>
+              )}
+
+              {formField.type === 'TextArea' && (
+                <TextField
+                  id="standard-textarea"
+                  label="Multiline Placeholder"
+                  placeholder="Placeholder"
+                  multiline
+                />
+              )}
+
+              {formField.type === 'Date' && (
+                <TextField
+                  id="date"
+                  label="Birthday"
+                  type="date"
+                  defaultValue="2017-05-24"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
               )}
             </Grid>
           );
