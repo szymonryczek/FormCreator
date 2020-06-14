@@ -1,6 +1,7 @@
-export interface IFormField {
+export type IFormField = {
+  id: number;
   type?: string;
   name?: '';
   label?: string;
-  value?: any;
-}
+  values?: any[];
+};

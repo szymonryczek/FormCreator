@@ -40,7 +40,7 @@ export const Fabs = () => {
   const tabId = useSelector(getTabId);
 
   const OnAddFormField = () => {
-    dispatch(addFormField({}));
+    dispatch(addFormField());
   };
 
   const fabs = [

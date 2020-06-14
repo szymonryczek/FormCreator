@@ -45,9 +45,9 @@ export const Previewer = () => {
   return (
     <Grid container spacing={1}>
       {formFields &&
-        formFields.map((formField) => {
+        formFields.map((formField, index) => {
           return (
-            <Grid item xs={12}>
+            <Grid item xs={12} key={index}>
               {!formField.type && (
                 <>
                   <div
@@ -79,7 +79,7 @@ export const Previewer = () => {
                       value={fieldType}
                       onChange={handleChange}
                     >
-                      {console.log('formField', formField.value)}
+                      {/*{console.log('formField', formField.value)}*/}
                       <MenuItem value={'m'}>Dobrze, good</MenuItem>
                       {/*<MenuItem value={'k'}>:C</MenuItem>*/}
                       {/*<MenuItem value={'i'}>Nie wiem</MenuItem>*/}

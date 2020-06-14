@@ -13,7 +13,7 @@ export const Builder = () => {
     <>
       {formFields.length ? (
         formFields.map((formField, index) => (
-          <>
+          <React.Fragment key={index}>
             <Grid
               key={`builder-field-${index}`}
               container
@@ -21,11 +21,11 @@ export const Builder = () => {
               alignItems="center"
               justify="space-around"
             >
-              <FormField id={index} formField={formField} />
+              <FormField formField={formField} />
             </Grid>
 
             <Divider />
-          </>
+          </React.Fragment>
         ))
       ) : (
         <p>Empty, Add new field</p>

@@ -3,22 +3,20 @@ import React from 'react';
 import { Grid, IconButton, TextField } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { IFormField } from '~/types';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeInputType, getFormField, removeFormField } from '~/store';
+import { useDispatch } from 'react-redux';
+import { changeInputType, removeFormField } from '~/store';
 import { SelectField, ChoiceFieldType } from '~/modules/Builder/components';
 
 type Props = {
-  id: number;
-  formField?: IFormField;
+  formField: IFormField;
 };
 
-export const FormField = ({ id }: Props) => {
+export const FormField = ({ formField }: Props) => {
   const [label, setLabel] = React.useState<string | number>('');
   const dispatch = useDispatch();
-  const formField = useSelector(getFormField(id));
 
   const onRemoveField = () => {
-    dispatch(removeFormField(id));
+    dispatch(removeFormField(formField.id));
   };
 
   const handleEtykieta = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +25,7 @@ export const FormField = ({ id }: Props) => {
 
     dispatch(
       changeInputType({
-        id,
+        id: formField.id,
         label,
       }),
     );
@@ -36,7 +34,7 @@ export const FormField = ({ id }: Props) => {
   return (
     <Grid container spacing={1} alignItems="center">
       <Grid item xs={2}>
-        <TextField required label="Nazwa" value={`Field#${id}`} />
+        <TextField required label="Nazwa" value={`Field#${formField.id}`} />
       </Grid>
 
       <Grid item xs={2}>
@@ -49,10 +47,12 @@ export const FormField = ({ id }: Props) => {
       </Grid>
 
       <Grid item xs={2}>
-        <ChoiceFieldType id={id} />
+        <ChoiceFieldType id={formField.id} />
       </Grid>
 
-      {formField.type === 'Select' && <SelectField />}
+      {formField.type === 'Select' && (
+        <SelectField formFieldId="0" values={formField.values} />
+      )}
 
       <IconButton
         aria-label="delete"

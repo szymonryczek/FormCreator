@@ -13,25 +13,34 @@ const initialState = {
   forms: [] as IFormField[],
 };
 
+let ids = 0;
+
 export const appData = createReducer(initialState, (handleAction) => [
   handleAction(changeTab, (state, { payload: tabId }) => ({
     ...state,
     tabId,
   })),
-  handleAction(addFormField, (state, { payload: formField }) => ({
-    ...state,
-    forms: [...state.forms, formField],
-  })),
+  handleAction(addFormField, (state) => {
+    const fields = [...state.forms];
+    fields.push({
+      id: ids++,
+    });
+
+    return {
+      ...state,
+      forms: [...fields],
+    };
+  }),
   handleAction(changeInputType, (state, { payload }) => {
     const newForms = [...state.forms];
     newForms[payload.id] = {
-      ...state.forms[payload.id],
+      ...newForms[payload.id],
       ...payload,
     };
 
     return {
       ...state,
-      forms: newForms,
+      forms: [...newForms],
     };
   }),
   handleAction(removeFormField, (state, { payload: formFieldId }) => {

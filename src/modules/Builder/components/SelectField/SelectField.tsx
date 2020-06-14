@@ -1,50 +1,26 @@
-import { Grid, TextField } from '@material-ui/core';
 import React from 'react';
+import { Button, Grid } from '@material-ui/core';
+import { InputText } from '~/modules/Builder/components/SelectField/InputText';
+import { useDispatch } from 'react-redux';
+import { addSelectValue } from '~/store';
 
-// const values = [
-//   {
-//     values: '1',
-//     label: 'tak',
-//   },
-//   {
-//     values: '2',
-//     label: 'nie',
-//   },
-// ];
+type Props = {
+  formFieldId: string;
+  values: any;
+};
 
-export const SelectField = () => {
-  const [value, setValue] = React.useState('');
-  const [label, setLabel] = React.useState('');
+export const SelectField = ({ formFieldId, values }: Props) => {
+  const dispatch = useDispatch();
 
-  const handleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
-
-  const handleLabel = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLabel(event.target.value);
+  const addValue = () => {
+    dispatch(addSelectValue(formFieldId));
   };
 
   return (
     <Grid>
-      <Grid item xs={12}>
-        <TextField
-          id="outlined-basic"
-          label="Option"
-          variant="outlined"
-          value={value}
-          onChange={handleValue}
-        />
-      </Grid>
+      {values && values.map((value: any) => <InputText />)}
 
-      <Grid item xs={12}>
-        <TextField
-          id="outlined-basic"
-          label="Option"
-          variant="outlined"
-          value={label}
-          onChange={handleLabel}
-        />
-      </Grid>
+      <Button onClick={addValue}>Add</Button>
     </Grid>
   );
 };
