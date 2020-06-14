@@ -5,6 +5,8 @@ import {
   changeInputType,
   changeTab,
   removeFormField,
+  addSelectValue,
+  updateFieldValues,
 } from '../actions';
 import { IFormField } from '~/types';
 
@@ -24,6 +26,7 @@ export const appData = createReducer(initialState, (handleAction) => [
     const fields = [...state.forms];
     fields.push({
       id: ids++,
+      values: [],
     });
 
     return {
@@ -37,6 +40,46 @@ export const appData = createReducer(initialState, (handleAction) => [
       ...newForms[payload.id],
       ...payload,
     };
+
+    return {
+      ...state,
+      forms: [...newForms],
+    };
+  }),
+  handleAction(addSelectValue, (state, { payload }) => {
+    const newForms = state.forms.map((form) => {
+      if (form.id === payload) {
+        return {
+          ...form,
+          values: [
+            ...form.values,
+            {
+              value: '',
+              label: '',
+            },
+          ],
+        };
+      }
+
+      return form;
+    });
+
+    return {
+      ...state,
+      forms: [...newForms],
+    };
+  }),
+  handleAction(updateFieldValues, (state, { payload }) => {
+    const newForms = state.forms.map((form) => {
+      if (form.id === payload.id) {
+        return {
+          ...form,
+          values: [payload.fieldValue],
+        };
+      }
+
+      return form;
+    });
 
     return {
       ...state,

@@ -51,7 +51,7 @@ export const FormField = ({ formField }: Props) => {
       </Grid>
 
       {formField.type === 'Select' && (
-        <SelectField formFieldId="0" values={formField.values} />
+        <SelectField formFieldId={formField.id} values={formField.values} />
       )}
 
       <IconButton
