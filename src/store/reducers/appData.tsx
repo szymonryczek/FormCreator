@@ -72,9 +72,20 @@ export const appData = createReducer(initialState, (handleAction) => [
   handleAction(updateFieldValues, (state, { payload }) => {
     const newForms = state.forms.map((form) => {
       if (form.id === payload.id) {
+        const formValues = [...form.values];
+
+        if (formValues[payload.fieldValueId]) {
+          formValues[payload.fieldValueId] = payload.fieldValue;
+
+          return {
+            ...form,
+            values: formValues,
+          };
+        }
+
         return {
           ...form,
-          values: [payload.fieldValue],
+          values: [...formValues, payload.fieldValue],
         };
       }
 

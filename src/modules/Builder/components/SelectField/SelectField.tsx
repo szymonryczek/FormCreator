@@ -3,7 +3,6 @@ import { Button, Grid } from '@material-ui/core';
 import { InputText } from '~/modules/Builder/components/SelectField/InputText';
 import { useDispatch } from 'react-redux';
 import { addSelectValue } from '~/store';
-import { FormFieldValue } from '~/types';
 
 type Props = {
   formFieldId: number;
@@ -19,14 +18,14 @@ export const SelectField = ({ formFieldId, values }: Props) => {
 
   return (
     <Grid>
-      {values?.length &&
-        values?.map((formValue: FormFieldValue, index: number) => (
-          <InputText
-            key={index}
-            formFieldId={formFieldId}
-            fieldValue={formValue}
-          />
-        ))}
+      {values?.map((formValue: any, index: number) => (
+        <InputText
+          key={index}
+          formFieldId={formFieldId}
+          fieldValueId={index}
+          fieldValue={formValue}
+        />
+      ))}
 
       <Button onClick={addValue}>Add</Button>
     </Grid>

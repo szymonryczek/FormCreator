@@ -1,5 +1,4 @@
 import { createAction } from 'deox';
-import { FormFieldValue } from '~/types';
 
 export const changeTab = createAction(
   '[appData] change tab',
@@ -17,8 +16,11 @@ export const addSelectValue = createAction(
 );
 export const updateFieldValues = createAction(
   '[appData] update fields values',
-  (resolve) => (payload: { id: number; fieldValue: FormFieldValue }) =>
-    resolve(payload),
+  (resolve) => (payload: {
+    id: number;
+    fieldValueId: number;
+    fieldValue: any;
+  }) => resolve(payload),
 );
 
 interface Itest {

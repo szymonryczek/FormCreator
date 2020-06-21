@@ -1,41 +1,26 @@
 import { Grid, TextField } from '@material-ui/core';
 import React from 'react';
-import { FormFieldValue } from '~/types';
 import { useDispatch } from 'react-redux';
 import { updateFieldValues } from '~/store';
 
 type Props = {
+  fieldValueId: number;
   formFieldId: number;
-  fieldValue: FormFieldValue;
+  fieldValue: any;
 };
 
-export const InputText = ({ formFieldId, fieldValue }: Props) => {
-  const [value, setValue] = React.useState(fieldValue.value || '');
-  const [label, setLabel] = React.useState(fieldValue.label || '');
+export const InputText = ({ formFieldId, fieldValue, fieldValueId }: Props) => {
+  const [option, setOption] = React.useState(fieldValue.label || '');
   const dispatch = useDispatch();
 
-  const handleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-    dispatch(
-      updateFieldValues({
-        id: formFieldId,
-        fieldValue: {
-          value,
-          label,
-        },
-      }),
-    );
-  };
+  const handleOption = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setOption(event.target.value);
 
-  const handleLabel = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLabel(event.target.value);
     dispatch(
       updateFieldValues({
         id: formFieldId,
-        fieldValue: {
-          value,
-          label,
-        },
+        fieldValueId: fieldValueId,
+        fieldValue: event.target.value,
       }),
     );
   };
@@ -47,18 +32,8 @@ export const InputText = ({ formFieldId, fieldValue }: Props) => {
           id="outlined-basic"
           label="Option"
           variant="outlined"
-          value={value}
-          onChange={handleValue}
-        />
-      </Grid>
-
-      <Grid item xs={12}>
-        <TextField
-          id="outlined-basic"
-          label="Option"
-          variant="outlined"
-          value={label}
-          onChange={handleLabel}
+          value={option}
+          onChange={handleOption}
         />
       </Grid>
     </Grid>

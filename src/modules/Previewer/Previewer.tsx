@@ -81,7 +81,7 @@ export const Previewer = () => {
                       onChange={handleChange}
                     >
                       {formField.values.map((value) => (
-                        <MenuItem value={value.value}>{value.label}</MenuItem>
+                        <MenuItem value={value}>{value}</MenuItem>
                       ))}
                     </Select>
                   </FormControl>
