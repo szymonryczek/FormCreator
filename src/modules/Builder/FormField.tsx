@@ -54,6 +54,14 @@ export const FormField = ({ formField }: Props) => {
         <SelectField formFieldId={formField.id} values={formField.values} />
       )}
 
+      {formField.type === 'Checkbox' && (
+        <SelectField formFieldId={formField.id} values={formField.values} />
+      )}
+
+      {formField.type === 'Radio' && (
+        <SelectField formFieldId={formField.id} values={formField.values} />
+      )}
+
       <IconButton
         aria-label="delete"
         color="secondary"

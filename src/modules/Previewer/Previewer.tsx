@@ -2,12 +2,17 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { getFormFields } from '~/store';
 import {
+  Checkbox,
   createStyles,
   Divider,
   FormControl,
+  FormControlLabel,
+  FormGroup,
   Grid,
   InputLabel,
   MenuItem,
+  Radio,
+  RadioGroup,
   Select,
   TextField,
   Typography,
@@ -26,9 +31,10 @@ const useStyles = makeStyles((theme) =>
 export const Previewer = () => {
   const classes = useStyles();
   const formFields = useSelector(getFormFields);
-
   const [fieldType, setFieldType] = React.useState<string | number>('');
   const [open, setOpen] = React.useState(false);
+  const [radio] = React.useState('');
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -66,7 +72,7 @@ export const Previewer = () => {
               )}
 
               {formField.type === 'Select' && (
-                <div style={{ height: '56px' }}>
+                <div>
                   <FormControl className={classes.formControl}>
                     <InputLabel id="demo-controlled-open-select-label">
                       {formField.label}
@@ -86,6 +92,85 @@ export const Previewer = () => {
                     </Select>
                   </FormControl>
                 </div>
+              )}
+
+              {formField.type === 'Checkbox' && (
+                <div>
+                  <FormControl
+                    component="fieldset"
+                    className={classes.formControl}
+                  >
+                    <FormGroup>
+                      {formField.values.map((value) => {
+                        if (value.length) {
+                          return (
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={true}
+                                  onChange={handleChange}
+                                  name={value}
+                                />
+                              }
+                              label={value}
+                            />
+                          );
+                        }
+
+                        return 'empty';
+                      })}
+                    </FormGroup>
+                  </FormControl>
+                </div>
+              )}
+
+              {formField.type === 'Radio' && (
+                <FormControl
+                  component="fieldset"
+                  className={classes.formControl}
+                >
+                  <RadioGroup
+                    aria-label="gender"
+                    name="gender1"
+                    value={radio}
+                    onChange={handleChange}
+                  >
+                    {formField.values.map((value) => {
+                      if (value.length) {
+                        return (
+                          <FormControlLabel
+                            value={value}
+                            control={<Radio />}
+                            label={value}
+                          />
+                        );
+                      }
+
+                      return 'empty';
+                    })}
+                  </RadioGroup>
+                </FormControl>
+              )}
+
+              {formField.type === 'Email' && (
+                <>
+                  <TextField
+                    error
+                    id="standard-error-helper-text"
+                    label="Error"
+                    defaultValue="Hello World"
+                    helperText="Incorrect entry."
+                    type="email"
+                  />
+                </>
+              )}
+
+              {formField.type === 'TextField' && (
+                <TextField
+                  id="standard-textarea"
+                  label="Single Placeholder"
+                  placeholder="Placeholder"
+                />
               )}
 
               {formField.type === 'TextArea' && (

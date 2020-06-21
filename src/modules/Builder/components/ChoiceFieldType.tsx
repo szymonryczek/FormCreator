@@ -64,10 +64,13 @@ export const ChoiceFieldType = ({ id }: Props) => {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
+        <MenuItem value={'Checkbox'}>Checkbox</MenuItem>
+        <MenuItem value={'Date'}>Data</MenuItem>
+        <MenuItem value={'Email'}>Email</MenuItem>
+        <MenuItem value={'Radio'}>Radio</MenuItem>
         <MenuItem value={'Select'}>Select</MenuItem>
         <MenuItem value={'TextArea'}>Text area</MenuItem>
-        <MenuItem value={'Date'}>Data</MenuItem>
-        <MenuItem value={'Checkbox'}>Checkbox</MenuItem>
+        <MenuItem value={'TextField'}>Text field</MenuItem>
       </Select>
     </FormControl>
   );
