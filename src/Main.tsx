@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
       height: 'calc(100vh - 90px)',
     },
+    fullWidth: {
+      width: '100%',
+    },
   }),
 );
 
@@ -30,13 +33,13 @@ export const Main = () => {
         className={classes.root}
       >
         <Grid container item xs={6}>
-          <Card style={{ width: '100%' }}>
+          <Card className={classes.fullWidth}>
             <Builder />
           </Card>
         </Grid>
 
         <Grid container item xs={6}>
-          <Card style={{ width: '100%' }}>
+          <Card className={classes.fullWidth}>
             <Previewer />
           </Card>
         </Grid>

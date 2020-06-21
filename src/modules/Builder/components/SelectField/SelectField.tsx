@@ -5,23 +5,23 @@ import { useDispatch } from 'react-redux';
 import { addSelectValue } from '~/store';
 
 type Props = {
-  formFieldId: number;
-  values: any;
+  formCaseID: number;
+  formCaseValues: any;
 };
 
-export const SelectField = ({ formFieldId, values }: Props) => {
+export const SelectField = ({ formCaseID, formCaseValues }: Props) => {
   const dispatch = useDispatch();
 
   const addValue = () => {
-    dispatch(addSelectValue(formFieldId));
+    dispatch(addSelectValue(formCaseID));
   };
 
   return (
     <Grid>
-      {values?.map((formValue: any, index: number) => (
+      {formCaseValues?.map((formValue: any, index: number) => (
         <InputText
           key={index}
-          formFieldId={formFieldId}
+          formFieldId={formCaseID}
           fieldValueId={index}
           fieldValue={formValue}
         />

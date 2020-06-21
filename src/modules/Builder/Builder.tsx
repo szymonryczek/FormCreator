@@ -1,9 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
 import { Divider, Grid } from '@material-ui/core';
-
-import { FormField } from '~/modules/Builder/FormField';
+import { FormBuilderCase } from '~/modules/Builder/FormBuilderCase';
 import { getFormFields } from '~/store';
 
 export const Builder = () => {
@@ -21,14 +19,14 @@ export const Builder = () => {
               alignItems="center"
               justify="space-around"
             >
-              <FormField formField={formField} />
+              <FormBuilderCase formField={formField} />
             </Grid>
 
             <Divider />
           </React.Fragment>
         ))
       ) : (
-        <p>Empty, Add new field</p>
+        <p>Empty form, add new field</p>
       )}
     </>
   );

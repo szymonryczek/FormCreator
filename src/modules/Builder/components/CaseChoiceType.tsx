@@ -20,10 +20,10 @@ const useStyles = makeStyles((theme) =>
 );
 
 type Props = {
-  id: number;
+  formCaseID: number;
 };
 
-export const ChoiceFieldType = ({ id }: Props) => {
+export const CaseChoiceType = ({ formCaseID }: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [fieldType, setFieldType] = React.useState<string | number>('');
@@ -35,7 +35,7 @@ export const ChoiceFieldType = ({ id }: Props) => {
     setFieldType(type);
     dispatch(
       changeInputType({
-        id,
+        id: formCaseID,
         type,
       }),
     );
