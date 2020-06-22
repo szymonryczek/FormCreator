@@ -2,23 +2,17 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { getFormFields } from '~/store';
 import {
-  Checkbox,
   createStyles,
-  Divider,
   FormControl,
   FormControlLabel,
-  FormGroup,
   Grid,
-  InputLabel,
-  MenuItem,
   Radio,
   RadioGroup,
-  Select,
   TextField,
-  Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { MessageType } from '~/types';
+import { CheckBoxField, EmptyField, SelectField } from './components';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -32,22 +26,12 @@ const useStyles = makeStyles((theme) =>
 export const Previewer = () => {
   const classes = useStyles();
   const formFields = useSelector(getFormFields);
-  const [fieldType, setFieldType] = React.useState<string | number>('');
-  const [open, setOpen] = React.useState(false);
+  // const [setFieldType] = React.useState<string | number>('');
   const [radio] = React.useState('');
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const type = event.target.value as string;
-
-    setFieldType(type);
+    // const type = event.target.value as string;
+    // setFieldType(type);
   };
 
   const {
@@ -64,78 +48,17 @@ export const Previewer = () => {
     <Grid container spacing={1}>
       {formFields &&
         formFields.map((formField, index) => {
+          const { type } = formField;
+
           return (
             <Grid item xs={12} key={index}>
-              {!formField.type && (
-                <>
-                  <div
-                    style={{
-                      height: '56px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <Typography>Select field type to display</Typography>
-                  </div>
-                  <Divider />
-                </>
-              )}
+              {!type && <EmptyField />}
 
-              {formField.type === SELECT && (
-                <div>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-controlled-open-select-label">
-                      {formField.label}
-                    </InputLabel>
-                    <Select
-                      labelId="demo-controlled-open-select-label"
-                      id="demo-controlled-open-select"
-                      open={open}
-                      onClose={handleClose}
-                      onOpen={handleOpen}
-                      value={fieldType}
-                      onChange={handleChange}
-                    >
-                      {formField.values.map((value) => (
-                        <MenuItem value={value}>{value}</MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </div>
-              )}
+              {type === SELECT && <SelectField formField={formField} />}
 
-              {formField.type === CHECKBOX && (
-                <div>
-                  <FormControl
-                    component="fieldset"
-                    className={classes.formControl}
-                  >
-                    <FormGroup>
-                      {formField.values.map((value) => {
-                        if (value.length) {
-                          return (
-                            <FormControlLabel
-                              control={
-                                <Checkbox
-                                  checked={true}
-                                  onChange={handleChange}
-                                  name={value}
-                                />
-                              }
-                              label={value}
-                            />
-                          );
-                        }
+              {type === CHECKBOX && <CheckBoxField formField={formField} />}
 
-                        return 'empty';
-                      })}
-                    </FormGroup>
-                  </FormControl>
-                </div>
-              )}
-
-              {formField.type === RADIO && (
+              {type === RADIO && (
                 <FormControl
                   component="fieldset"
                   className={classes.formControl}
@@ -163,7 +86,7 @@ export const Previewer = () => {
                 </FormControl>
               )}
 
-              {formField.type === EMAIL && (
+              {type === EMAIL && (
                 <>
                   <TextField
                     error
@@ -176,7 +99,7 @@ export const Previewer = () => {
                 </>
               )}
 
-              {formField.type === TEXT_FIELD && (
+              {type === TEXT_FIELD && (
                 <TextField
                   id="standard-textarea"
                   label="Single Placeholder"
@@ -184,7 +107,7 @@ export const Previewer = () => {
                 />
               )}
 
-              {formField.type === TEXT_AREA && (
+              {type === TEXT_AREA && (
                 <TextField
                   id="standard-textarea"
                   label="Multiline Placeholder"
@@ -193,7 +116,7 @@ export const Previewer = () => {
                 />
               )}
 
-              {formField.type === DATE && (
+              {type === DATE && (
                 <TextField
                   id="date"
                   label="Birthday"
