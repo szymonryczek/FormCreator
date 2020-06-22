@@ -1,6 +1,5 @@
 import React from 'react';
-import { MessageType } from '~/types/MessageType';
-import { IFormField } from '~/types';
+import { IFormField, MessageType } from '~/types';
 import { SelectField } from './SelectField';
 
 const { CHECKBOX, RADIO, SELECT } = MessageType;

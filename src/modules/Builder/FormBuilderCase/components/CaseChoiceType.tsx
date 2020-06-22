@@ -9,7 +9,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { changeInputType } from '~/store';
-import { MessageType } from '~/types/MessageType';
+import { MessageType } from '~/types';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

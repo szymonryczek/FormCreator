@@ -18,7 +18,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { MessageType } from '~/types/MessageType';
+import { MessageType } from '~/types';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
