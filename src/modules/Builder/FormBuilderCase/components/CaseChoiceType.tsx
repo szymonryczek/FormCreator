@@ -9,6 +9,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { changeInputType } from '~/store';
+import { MessageType } from '~/types/MessageType';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -49,6 +50,16 @@ export const CaseChoiceType = ({ formCaseID }: Props) => {
     setOpen(true);
   };
 
+  const {
+    CHECKBOX,
+    DATE,
+    EMAIL,
+    RADIO,
+    SELECT,
+    TEXT_AREA,
+    TEXT_FIELD,
+  } = MessageType;
+
   return (
     <FormControl className={classes.formControl}>
       <InputLabel id="demo-controlled-open-select-label">Typ pola</InputLabel>
@@ -64,13 +75,13 @@ export const CaseChoiceType = ({ formCaseID }: Props) => {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value={'Checkbox'}>Checkbox</MenuItem>
-        <MenuItem value={'Date'}>Data</MenuItem>
-        <MenuItem value={'Email'}>Email</MenuItem>
-        <MenuItem value={'Radio'}>Radio</MenuItem>
-        <MenuItem value={'Select'}>Select</MenuItem>
-        <MenuItem value={'TextArea'}>Text area</MenuItem>
-        <MenuItem value={'TextField'}>Text field</MenuItem>
+        <MenuItem value={CHECKBOX}>{CHECKBOX}</MenuItem>
+        <MenuItem value={DATE}>{DATE}</MenuItem>
+        <MenuItem value={EMAIL}>{EMAIL}</MenuItem>
+        <MenuItem value={RADIO}>{RADIO}</MenuItem>
+        <MenuItem value={SELECT}>{SELECT}</MenuItem>
+        <MenuItem value={TEXT_AREA}>{TEXT_AREA}</MenuItem>
+        <MenuItem value={TEXT_FIELD}>{TEXT_FIELD}</MenuItem>
       </Select>
     </FormControl>
   );

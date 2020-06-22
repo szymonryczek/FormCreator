@@ -18,6 +18,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { MessageType } from '~/types/MessageType';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -49,6 +50,16 @@ export const Previewer = () => {
     setFieldType(type);
   };
 
+  const {
+    CHECKBOX,
+    DATE,
+    EMAIL,
+    RADIO,
+    SELECT,
+    TEXT_AREA,
+    TEXT_FIELD,
+  } = MessageType;
+
   return (
     <Grid container spacing={1}>
       {formFields &&
@@ -71,7 +82,7 @@ export const Previewer = () => {
                 </>
               )}
 
-              {formField.type === 'Select' && (
+              {formField.type === SELECT && (
                 <div>
                   <FormControl className={classes.formControl}>
                     <InputLabel id="demo-controlled-open-select-label">
@@ -94,7 +105,7 @@ export const Previewer = () => {
                 </div>
               )}
 
-              {formField.type === 'Checkbox' && (
+              {formField.type === CHECKBOX && (
                 <div>
                   <FormControl
                     component="fieldset"
@@ -124,7 +135,7 @@ export const Previewer = () => {
                 </div>
               )}
 
-              {formField.type === 'Radio' && (
+              {formField.type === RADIO && (
                 <FormControl
                   component="fieldset"
                   className={classes.formControl}
@@ -152,7 +163,7 @@ export const Previewer = () => {
                 </FormControl>
               )}
 
-              {formField.type === 'Email' && (
+              {formField.type === EMAIL && (
                 <>
                   <TextField
                     error
@@ -165,7 +176,7 @@ export const Previewer = () => {
                 </>
               )}
 
-              {formField.type === 'TextField' && (
+              {formField.type === TEXT_FIELD && (
                 <TextField
                   id="standard-textarea"
                   label="Single Placeholder"
@@ -173,7 +184,7 @@ export const Previewer = () => {
                 />
               )}
 
-              {formField.type === 'TextArea' && (
+              {formField.type === TEXT_AREA && (
                 <TextField
                   id="standard-textarea"
                   label="Multiline Placeholder"
@@ -182,7 +193,7 @@ export const Previewer = () => {
                 />
               )}
 
-              {formField.type === 'Date' && (
+              {formField.type === DATE && (
                 <TextField
                   id="date"
                   label="Birthday"

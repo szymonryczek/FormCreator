@@ -1,11 +1,12 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import { IFormField } from '~/types';
-import { SelectField, CaseChoiceType } from '~/modules/Builder/components';
 import {
+  CaseChoiceType,
   CaseDelete,
   CaseID,
   CaseLabel,
+  ExternalFields,
 } from '~/modules/Builder/FormBuilderCase/components';
 
 type Props = {
@@ -26,17 +27,9 @@ export const FormBuilderCase = ({ formField: { id, values, type } }: Props) => (
       <CaseChoiceType formCaseID={id} />
     </Grid>
 
-    {type === 'Select' && (
-      <SelectField formCaseID={id} formCaseValues={values} />
-    )}
-
-    {type === 'Checkbox' && (
-      <SelectField formCaseID={id} formCaseValues={values} />
-    )}
-
-    {type === 'Radio' && (
-      <SelectField formCaseID={id} formCaseValues={values} />
-    )}
+    <Grid item>
+      <ExternalFields id={id} type={type} values={values} />
+    </Grid>
 
     <CaseDelete formCaseID={id} />
   </Grid>
