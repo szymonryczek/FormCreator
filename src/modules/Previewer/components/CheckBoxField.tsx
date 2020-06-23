@@ -6,8 +6,8 @@ import {
   FormControlLabel,
   FormGroup,
 } from '@material-ui/core';
-import { IFormField } from '~/types';
 import { makeStyles } from '@material-ui/core/styles';
+import { IFormField } from '~/types';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -22,7 +22,7 @@ type Props = {
   formField: IFormField;
 };
 
-export const CheckBoxField = ({ formField: { values, label } }: Props) => {
+export const CheckBoxField = ({ formField: { values } }: Props) => {
   const classes = useStyles();
 
   const [checkbox, setCheckbox] = React.useState(
@@ -32,6 +32,8 @@ export const CheckBoxField = ({ formField: { values, label } }: Props) => {
           [value]: false,
         };
       }
+
+      return false;
     }),
   );
 
@@ -43,14 +45,13 @@ export const CheckBoxField = ({ formField: { values, label } }: Props) => {
     <div>
       <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup>
-          {values.map((value, index) => {
+          {values.map((value) => {
             if (value.length) {
               return (
                 <FormControlLabel
                   control={
                     <Checkbox
-                      // @ts-ignore
-                      checked={checkbox[value]}
+                      checked={checkbox[value] as boolean}
                       onChange={handleChange}
                       name={value}
                     />

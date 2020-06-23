@@ -1,38 +1,17 @@
 import React from 'react';
+import { Grid, TextField } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { getFormFields } from '~/store';
-import {
-  createStyles,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  Radio,
-  RadioGroup,
-  TextField,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { MessageType } from '~/types';
-import { CheckBoxField, EmptyField, SelectField } from './components';
-
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 150,
-    },
-  }),
-);
+import {
+  CheckBoxField,
+  EmptyField,
+  SelectField,
+  RadioField,
+} from './components';
 
 export const Previewer = () => {
-  const classes = useStyles();
   const formFields = useSelector(getFormFields);
-  // const [setFieldType] = React.useState<string | number>('');
-  const [radio] = React.useState('');
-
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    // const type = event.target.value as string;
-    // setFieldType(type);
-  };
 
   const {
     CHECKBOX,
@@ -47,44 +26,18 @@ export const Previewer = () => {
   return (
     <Grid container spacing={1}>
       {formFields &&
-        formFields.map((formField, index) => {
+        formFields.map((formField) => {
           const { type } = formField;
 
           return (
-            <Grid item xs={12} key={index}>
+            <Grid item xs={12} key={formField.id}>
               {!type && <EmptyField />}
 
               {type === SELECT && <SelectField formField={formField} />}
 
               {type === CHECKBOX && <CheckBoxField formField={formField} />}
 
-              {type === RADIO && (
-                <FormControl
-                  component="fieldset"
-                  className={classes.formControl}
-                >
-                  <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
-                    value={radio}
-                    onChange={handleChange}
-                  >
-                    {formField.values.map((value) => {
-                      if (value.length) {
-                        return (
-                          <FormControlLabel
-                            value={value}
-                            control={<Radio />}
-                            label={value}
-                          />
-                        );
-                      }
-
-                      return 'empty';
-                    })}
-                  </RadioGroup>
-                </FormControl>
-              )}
+              {type === RADIO && <RadioField formField={formField} />}
 
               {type === EMAIL && (
                 <>
