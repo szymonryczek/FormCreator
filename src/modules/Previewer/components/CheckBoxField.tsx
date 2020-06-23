@@ -5,6 +5,7 @@ import {
   FormControl,
   FormControlLabel,
   FormGroup,
+  FormLabel,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { IFormField } from '~/types';
@@ -22,7 +23,7 @@ type Props = {
   formField: IFormField;
 };
 
-export const CheckBoxField = ({ formField: { values } }: Props) => {
+export const CheckBoxField = ({ formField: { values, label } }: Props) => {
   const classes = useStyles();
 
   const [checkbox, setCheckbox] = React.useState(
@@ -44,6 +45,7 @@ export const CheckBoxField = ({ formField: { values } }: Props) => {
   return (
     <div>
       <FormControl component="fieldset" className={classes.formControl}>
+        <FormLabel component="legend">{label}</FormLabel>
         <FormGroup>
           {values.map((value) => {
             if (value.length) {

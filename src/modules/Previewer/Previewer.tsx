@@ -43,38 +43,25 @@ export const Previewer = () => {
                 <>
                   <TextField
                     error
-                    id="standard-error-helper-text"
                     label="Error"
-                    defaultValue="Hello World"
-                    helperText="Incorrect entry."
+                    helperText="Incorrect email."
                     type="email"
                   />
                 </>
               )}
 
               {type === TEXT_FIELD && (
-                <TextField
-                  id="standard-textarea"
-                  label="Single Placeholder"
-                  placeholder="Placeholder"
-                />
+                <TextField label={formField.label} placeholder="Placeholder" />
               )}
 
               {type === TEXT_AREA && (
-                <TextField
-                  id="standard-textarea"
-                  label="Multiline Placeholder"
-                  placeholder="Placeholder"
-                  multiline
-                />
+                <TextField label={formField.label} multiline />
               )}
 
               {type === DATE && (
                 <TextField
-                  id="date"
-                  label="Birthday"
+                  label={formField.label}
                   type="date"
-                  defaultValue="2017-05-24"
                   InputLabelProps={{
                     shrink: true,
                   }}

@@ -6,6 +6,7 @@ import {
   Radio,
   makeStyles,
   createStyles,
+  FormLabel,
 } from '@material-ui/core';
 import { IFormField } from '~/types';
 
@@ -22,7 +23,7 @@ type Props = {
   formField: IFormField;
 };
 
-export const RadioField = ({ formField: { values } }: Props) => {
+export const RadioField = ({ formField: { values, label } }: Props) => {
   const classes = useStyles();
 
   const [radio, setRadio] = React.useState('');
@@ -33,6 +34,7 @@ export const RadioField = ({ formField: { values } }: Props) => {
 
   return (
     <FormControl component="fieldset" className={classes.formControl}>
+      <FormLabel component="legend">{label}</FormLabel>
       <RadioGroup
         aria-label="gender"
         name="gender1"
