@@ -1,4 +1,4 @@
-import { State } from '~/store';
+import { State } from '../reducers';
 
 export const getTabId = (state: State) => state.appData.tabId;
 export const getFormFields = (state: State) => state.appData.forms;

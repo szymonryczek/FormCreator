@@ -1,5 +1,5 @@
-import { Grid, TextField } from '@material-ui/core';
 import React from 'react';
+import { Grid, TextField } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { updateFieldValues } from '~/store';
 
@@ -19,7 +19,7 @@ export const InputText = ({ formFieldId, fieldValue, fieldValueId }: Props) => {
     dispatch(
       updateFieldValues({
         id: formFieldId,
-        fieldValueId: fieldValueId,
+        fieldValueId,
         fieldValue: event.target.value,
       }),
     );

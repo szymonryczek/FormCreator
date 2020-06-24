@@ -7,9 +7,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { addFormField } from '~/store/actions';
 import { getTabId } from '~/store/selectors';
-import { addFormField } from '~/store';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

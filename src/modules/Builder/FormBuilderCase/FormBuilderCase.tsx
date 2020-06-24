@@ -1,6 +1,5 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import { IFormField } from '~/types';
 import {
   CaseChoiceType,
   CaseDelete,
@@ -8,6 +7,7 @@ import {
   CaseLabel,
   ExternalFields,
 } from '~/modules/Builder/FormBuilderCase/components';
+import { IFormField } from '~/types';
 
 type Props = {
   formField: IFormField;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Button, Grid } from '@material-ui/core';
-import { addSelectValue } from '~/store';
+import { useDispatch } from 'react-redux';
 import { InputText } from '~/modules/Builder/FormBuilderCase/components/SelectField/InputText';
+import { addSelectValue } from '~/store';
 
 type Props = {
   formCaseID: number;
@@ -15,8 +15,6 @@ export const SelectField = ({ formCaseID, formCaseValues }: Props) => {
   const addValue = () => {
     dispatch(addSelectValue(formCaseID));
   };
-
-  console.log('render');
 
   return (
     <Grid>

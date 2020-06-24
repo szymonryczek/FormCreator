@@ -1,5 +1,6 @@
 import { createReducer } from 'deox';
 
+import { IFormField } from '~/types';
 import {
   addFormField,
   changeInputType,
@@ -8,7 +9,6 @@ import {
   addSelectValue,
   updateFieldValues,
 } from '../actions';
-import { IFormField } from '~/types';
 
 const initialState = {
   tabId: 0,
@@ -98,7 +98,7 @@ export const appData = createReducer(initialState, (handleAction) => [
     };
   }),
   handleAction(removeFormField, (state, { payload: formFieldId }) => {
-    let newForms = [...state.forms];
+    const newForms = [...state.forms];
     newForms.splice(formFieldId, 1);
 
     return {

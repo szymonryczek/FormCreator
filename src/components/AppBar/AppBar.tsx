@@ -5,19 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeTab } from '~/store';
 import { getTabId } from '~/store/selectors';
 
-const a11yProps = (index: any) => {
-  return {
-    id: `action-tab-${index}`,
-    'aria-controls': `action-tabpanel-${index}`,
-  };
-};
-
 export const AppBar = () => {
   const dispatch = useDispatch();
   const tabId = useSelector(getTabId);
 
-  const onTabChange = (event: unknown, tabId: number) => {
-    dispatch(changeTab(tabId));
+  const onTabChange = (event: unknown, targetTabId: number) => {
+    dispatch(changeTab(targetTabId));
   };
 
   return (
@@ -30,9 +23,9 @@ export const AppBar = () => {
         variant="fullWidth"
         aria-label="action tabs example"
       >
-        <Tab label="Editor" {...a11yProps(0)} />
-        <Tab label="Previewer" {...a11yProps(1)} />
-        <Tab label="Saved forms" {...a11yProps(2)} />
+        <Tab label="Editor" />
+        <Tab label="Previewer" />
+        <Tab label="Saved forms" />
       </Tabs>
     </MaterialBar>
   );
