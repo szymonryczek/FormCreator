@@ -8,6 +8,7 @@ import {
   EmptyField,
   SelectField,
   RadioField,
+  EmailField,
 } from './components';
 
 export const Previewer = () => {
@@ -39,16 +40,7 @@ export const Previewer = () => {
 
               {type === RADIO && <RadioField formField={formField} />}
 
-              {type === EMAIL && (
-                <>
-                  <TextField
-                    error
-                    label="Error"
-                    helperText="Incorrect email."
-                    type="email"
-                  />
-                </>
-              )}
+              {type === EMAIL && <EmailField formField={formField} />}
 
               {type === TEXT_FIELD && (
                 <TextField label={formField.label} placeholder="Placeholder" />

@@ -25,7 +25,6 @@ type Props = {
 
 export const RadioField = ({ formField: { values, label } }: Props) => {
   const classes = useStyles();
-
   const [radio, setRadio] = React.useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

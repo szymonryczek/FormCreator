@@ -10,10 +10,10 @@ export const Builder = () => {
   return (
     <>
       {formFields.length ? (
-        formFields.map((formField, index) => (
-          <React.Fragment key={index}>
+        formFields.map((formField) => (
+          <React.Fragment key={formField.id}>
             <Grid
-              key={`builder-field-${index}`}
+              key={`builder-field-${formField.id}`}
               container
               item
               alignItems="center"
