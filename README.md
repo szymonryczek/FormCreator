@@ -12,6 +12,10 @@ Easy tool to create forms.
 
 It is mandatory to use ESLint and Prettier plugin before push to repository. Make sure to use config files stored in root dir.
 
+#### LIVE
+
+https://szmq.github.io/FormCreator/
+
 ### Funkcje
 
 - Generowanie zaawansowanych formularzy
