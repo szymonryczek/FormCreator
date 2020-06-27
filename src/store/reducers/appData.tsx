@@ -8,10 +8,10 @@ import {
   removeFormField,
   addSelectValue,
   updateFieldValues,
+  loadForm,
 } from '../actions';
 
 const initialState = {
-  tabId: 0,
   forms: [] as IFormField[],
 };
 
@@ -22,6 +22,7 @@ export const appData = createReducer(initialState, (handleAction) => [
     ...state,
     tabId,
   })),
+  handleAction(loadForm, (state, { payload }) => payload),
   handleAction(addFormField, (state) => {
     const fields = [...state.forms];
     fields.push({

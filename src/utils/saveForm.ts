@@ -26,6 +26,20 @@ export const saveDocument = (store: any) => {
   }
 };
 
+export const getForm = (formId: string) => {
+  try {
+    const serializedState = localStorage.getItem(formId);
+    if (serializedState === null) {
+      return undefined;
+    }
+
+    return JSON.parse(serializedState);
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
+
 export const loadDocumentList = () => {
   try {
     const serializedState = localStorage.getItem(DoumentsNames);

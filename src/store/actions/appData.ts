@@ -1,8 +1,18 @@
 import { createAction } from 'deox';
+import { IFormField } from '~/types';
 
 export const changeTab = createAction(
   '[appData] change tab',
   (resolve) => (tabId: number) => resolve(tabId),
+);
+
+type test = {
+  forms: IFormField[];
+};
+
+export const loadForm = createAction(
+  '[appData] load form',
+  (resolve) => (form: test) => resolve(form),
 );
 
 export const addFormField = createAction(

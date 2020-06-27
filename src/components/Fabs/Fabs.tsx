@@ -14,8 +14,8 @@ import AddIcon from '@material-ui/icons/Add';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import SaveIcon from '@material-ui/icons/Save';
 import { useDispatch, useStore } from 'react-redux';
-import { addFormField } from '~/store/actions';
-import { saveDocument, loadDocumentList } from '~/utils';
+import { addFormField, loadForm } from '~/store/actions';
+import { saveDocument, loadDocumentList, getForm } from '~/utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -54,6 +54,12 @@ export const Fabs = () => {
   };
 
   const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleListItemClick = (value: string) => {
+    const newForm = getForm(value);
+    dispatch(loadForm(newForm));
     setIsOpen(false);
   };
 
@@ -102,7 +108,11 @@ export const Fabs = () => {
         <List>
           {forms &&
             forms.map((form) => (
-              <ListItem key={form}>
+              <ListItem
+                button
+                onClick={() => handleListItemClick(form)}
+                key={form}
+              >
                 <ListItemText primary={form} />
               </ListItem>
             ))}
