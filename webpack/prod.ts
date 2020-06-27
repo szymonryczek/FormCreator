@@ -29,6 +29,7 @@ const config = merge.smart(common, {
   ],
   optimization: {
     minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
+    portableRecords: true,
     splitChunks: {
       cacheGroups: {
         vendors: {
