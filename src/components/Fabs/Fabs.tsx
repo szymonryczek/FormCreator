@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
-import {
-  createStyles,
-  Fab,
-  Theme,
-  Dialog,
-  DialogTitle,
-  ListItem,
-  ListItemText,
-  List,
-} from '@material-ui/core';
+import { createStyles, Fab, Theme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import SaveIcon from '@material-ui/icons/Save';
 import { useDispatch, useStore } from 'react-redux';
-import { addFormField, loadForm } from '~/store/actions';
-import { saveDocument, loadDocumentList, getForm } from '~/utils';
+import { addFormField } from '~/store/actions';
+import { saveDocument, loadDocumentList } from '~/utils';
 import { FormList } from '../FormList';
 
 const useStyles = makeStyles((theme: Theme) =>
