@@ -6,13 +6,13 @@ export const changeTab = createAction(
   (resolve) => (tabId: number) => resolve(tabId),
 );
 
-type test = {
+type loadFormProps = {
   forms: IFormField[];
 };
 
 export const loadForm = createAction(
   '[appData] load form',
-  (resolve) => (form: test) => resolve(form),
+  (resolve) => (form: loadFormProps) => resolve(form),
 );
 
 export const addFormField = createAction(

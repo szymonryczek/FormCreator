@@ -24,6 +24,10 @@ export const appData = createReducer(initialState, (handleAction) => [
   })),
   handleAction(loadForm, (state, { payload }) => payload),
   handleAction(addFormField, (state) => {
+    if (ids === 0 && state.forms.length) {
+      ids = state.forms[state.forms.length - 1].id + 1;
+    }
+
     const fields = [...state.forms];
     fields.push({
       id: ids++,
