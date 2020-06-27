@@ -17,17 +17,23 @@ export const SelectField = ({ formCaseID, formCaseValues }: Props) => {
   };
 
   return (
-    <Grid>
+    <Grid container spacing={1} alignItems="center">
       {formCaseValues?.map((formValue: any, index: number) => (
-        <InputText
-          key={index}
-          formFieldId={formCaseID}
-          fieldValueId={index}
-          fieldValue={formValue}
-        />
+        <Grid item key={index}>
+          <InputText
+            key={index}
+            formFieldId={formCaseID}
+            fieldValueId={index}
+            fieldValue={formValue}
+          />
+        </Grid>
       ))}
 
-      <Button onClick={addValue}>Add</Button>
+      <Grid item>
+        <Button variant="contained" color="primary" onClick={addValue}>
+          Add
+        </Button>
+      </Grid>
     </Grid>
   );
 };

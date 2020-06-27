@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Grid } from '@material-ui/core';
+import { Divider, Grid, Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { FormBuilderCase } from '~/modules/Builder/FormBuilderCase';
 import { getFormFields } from '~/store';
@@ -26,7 +26,7 @@ export const Builder = () => {
           </React.Fragment>
         ))
       ) : (
-        <p>Empty form, add new field</p>
+        <Typography>Empty form, add new field</Typography>
       )}
     </>
   );

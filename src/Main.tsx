@@ -1,5 +1,11 @@
 import React from 'react';
-import { Card, createStyles, Grid, Theme } from '@material-ui/core';
+import {
+  Card,
+  createStyles,
+  Grid,
+  Theme,
+  CardContent,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { AppHeader, Fabs } from '~/components';
@@ -34,13 +40,17 @@ export const Main = () => {
       >
         <Grid container item xs={6}>
           <Card className={classes.fullWidth}>
-            <Builder />
+            <CardContent>
+              <Builder />
+            </CardContent>
           </Card>
         </Grid>
 
         <Grid container item xs={6}>
           <Card className={classes.fullWidth}>
-            <Previewer />
+            <CardContent>
+              <Previewer />
+            </CardContent>
           </Card>
         </Grid>
       </Grid>
