@@ -16,6 +16,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import { useDispatch, useStore } from 'react-redux';
 import { addFormField, loadForm } from '~/store/actions';
 import { saveDocument, loadDocumentList, getForm } from '~/utils';
+import { FormList } from '../FormList';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -39,6 +40,8 @@ export const Fabs = () => {
   const [forms, setForms] = useState<''[]>();
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleOpen = (open: boolean) => setIsOpen(open);
+
   const onAddFormField = () => {
     dispatch(addFormField());
   };
@@ -51,16 +54,6 @@ export const Fabs = () => {
     const result = loadDocumentList();
     setForms(result);
     setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
-  const handleListItemClick = (value: string) => {
-    const newForm = getForm(value);
-    dispatch(loadForm(newForm));
-    setIsOpen(false);
   };
 
   const fabs = [
@@ -99,25 +92,7 @@ export const Fabs = () => {
         ))}
       </div>
 
-      <Dialog
-        onClose={handleClose}
-        aria-labelledby="simple-dialog-title"
-        open={isOpen}
-      >
-        <DialogTitle id="simple-dialog-title">Select saved form</DialogTitle>
-        <List>
-          {forms &&
-            forms.map((form) => (
-              <ListItem
-                button
-                onClick={() => handleListItemClick(form)}
-                key={form}
-              >
-                <ListItemText primary={form} />
-              </ListItem>
-            ))}
-        </List>
-      </Dialog>
+      <FormList forms={forms} isOpen={isOpen} handleOpen={handleOpen} />
     </>
   );
 };
