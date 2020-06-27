@@ -8,6 +8,7 @@ import { useDispatch, useStore } from 'react-redux';
 import { addFormField } from '~/store/actions';
 import { saveDocument, loadDocumentList } from '~/utils';
 import { FormList } from '../FormList';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,6 +31,7 @@ export const Fabs = () => {
   const store = useStore();
   const [forms, setForms] = useState<''[]>();
   const [isOpen, setIsOpen] = useState(false);
+  const history = useHistory();
 
   const handleOpen = (open: boolean) => setIsOpen(open);
 
@@ -38,7 +40,9 @@ export const Fabs = () => {
   };
 
   const onSaveFormField = () => {
-    saveDocument(store);
+    const documentName = `document-${Date.now()}`;
+    saveDocument(store, documentName);
+    history.push(`/?id=${documentName}`);
   };
 
   const handleDelete = () => {

@@ -7,11 +7,12 @@ import {
   CardContent,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { AppHeader, Fabs } from '~/components';
 import { Builder, Previewer } from '~/modules';
-import { getForm } from './utils';
 import { loadForm } from './store';
-import { useDispatch } from 'react-redux';
+import { getForm } from './utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,11 +28,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const Main = () => {
   const classes = useStyles();
+  const location = useLocation();
   const dispatch = useDispatch();
 
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const documentQueryID = urlParams.get('id');
+  const searchParams = new URLSearchParams(location.search);
+  const documentQueryID = searchParams.get('id');
 
   useEffect(() => {
     if (documentQueryID) {

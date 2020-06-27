@@ -14,11 +14,10 @@ const saveToDocumentsList = (documentName: string) => {
   }
 };
 
-export const saveDocument = (store: any) => {
+export const saveDocument = (store: any, documentName: string) => {
   const storeSchema = store.getState().appData;
   try {
     const serializedState = JSON.stringify(storeSchema);
-    const documentName = `document-${Date.now()}`;
     localStorage.setItem(documentName, serializedState);
     saveToDocumentsList(documentName);
   } catch (err) {

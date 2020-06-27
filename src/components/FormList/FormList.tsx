@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { loadForm } from '~/store';
 import { getForm, deleteForm } from '~/utils';
 
@@ -27,6 +28,7 @@ export const FormList = ({
   handleDelete,
 }: Props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleClose = () => {
     handleOpen(false);
@@ -36,6 +38,7 @@ export const FormList = ({
     const newForm = getForm(value);
     dispatch(loadForm(newForm));
     handleOpen(false);
+    history.push(`/?id=${value}`);
   };
 
   const onDelete = (value: string) => {
