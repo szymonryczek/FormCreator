@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { AppHeader, Fabs } from '~/components';
 import { Builder, Previewer } from '~/modules';
 import { loadForm } from './store';
@@ -30,6 +30,7 @@ export const Main = () => {
   const classes = useStyles();
   const location = useLocation();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const searchParams = new URLSearchParams(location.search);
   const documentQueryID = searchParams.get('id');
@@ -37,9 +38,13 @@ export const Main = () => {
   useEffect(() => {
     if (documentQueryID) {
       const newForm = getForm(documentQueryID);
-      dispatch(loadForm(newForm));
+      if (newForm) {
+        dispatch(loadForm(newForm));
+      } else {
+        history.push(`/`);
+      }
     }
-  }, [dispatch, documentQueryID]);
+  }, [dispatch, documentQueryID, history]);
 
   return (
     <>

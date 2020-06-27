@@ -4,11 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import SaveIcon from '@material-ui/icons/Save';
+import { useSnackbar } from 'notistack';
 import { useDispatch, useStore } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { addFormField } from '~/store/actions';
 import { saveDocument, loadDocumentList } from '~/utils';
 import { FormList } from '../FormList';
-import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,6 +33,7 @@ export const Fabs = () => {
   const [forms, setForms] = useState<''[]>();
   const [isOpen, setIsOpen] = useState(false);
   const history = useHistory();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleOpen = (open: boolean) => setIsOpen(open);
 
@@ -43,11 +45,13 @@ export const Fabs = () => {
     const documentName = `document-${Date.now()}`;
     saveDocument(store, documentName);
     history.push(`/?id=${documentName}`);
+    enqueueSnackbar('Saved 👍');
   };
 
   const handleDelete = () => {
     const result = loadDocumentList();
     setForms(result);
+    enqueueSnackbar('Deleted 😅');
   };
 
   const onLoadFormField = () => {

@@ -9,6 +9,7 @@ import {
   IconButton,
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { useSnackbar } from 'notistack';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { loadForm } from '~/store';
@@ -29,6 +30,7 @@ export const FormList = ({
 }: Props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleClose = () => {
     handleOpen(false);
@@ -38,6 +40,7 @@ export const FormList = ({
     const newForm = getForm(value);
     dispatch(loadForm(newForm));
     handleOpen(false);
+    enqueueSnackbar('Loaded 🧐');
     history.push(`/?id=${value}`);
   };
 
