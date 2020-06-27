@@ -11,3 +11,14 @@ Easy tool to create forms.
 ### Code style
 
 It is mandatory to use ESLint and Prettier plugin before push to repository. Make sure to use config files stored in root dir.
+
+### Funkcje
+
+- Generowanie zaawansowanych formularzy
+- Podgląd budowanego formularza live
+- Zapisywanie, odczyt formularzy
+- Walidacja pól
+
+![Alt text](/assets/1.png)
+![Alt text](/assets/2.png)
+![Alt text](/assets/3.png)
