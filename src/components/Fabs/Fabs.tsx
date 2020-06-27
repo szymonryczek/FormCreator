@@ -1,14 +1,21 @@
-import React from 'react';
-import { createStyles, Fab, Theme, useTheme, Zoom } from '@material-ui/core';
-import { green } from '@material-ui/core/colors';
+import React, { useState } from 'react';
+import {
+  createStyles,
+  Fab,
+  Theme,
+  Dialog,
+  DialogTitle,
+  ListItem,
+  ListItemText,
+  List,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import UpIcon from '@material-ui/icons/KeyboardArrowUp';
-import clsx from 'clsx';
-import { useDispatch, useSelector } from 'react-redux';
+import GetAppIcon from '@material-ui/icons/GetApp';
+import SaveIcon from '@material-ui/icons/Save';
+import { useDispatch, useStore } from 'react-redux';
 import { addFormField } from '~/store/actions';
-import { getTabId } from '~/store/selectors';
+import { saveDocument, loadDocumentList } from '~/utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,84 +24,90 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'relative',
       minHeight: 200,
     },
-    fab: {
+    holder: {
       position: 'absolute',
-      bottom: theme.spacing(-3),
+      bottom: theme.spacing(3),
       right: theme.spacing(2),
-    },
-    fabGreen: {
-      color: theme.palette.common.white,
-      backgroundColor: green[500],
-      '&:hover': {
-        backgroundColor: green[600],
-      },
     },
   }),
 );
 
 export const Fabs = () => {
   const classes = useStyles();
-  const theme = useTheme();
   const dispatch = useDispatch();
-  const tabId = useSelector(getTabId);
+  const store = useStore();
+  const [forms, setForms] = useState<''[]>();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const OnAddFormField = () => {
+  const onAddFormField = () => {
     dispatch(addFormField());
+  };
+
+  const onSaveFormField = () => {
+    saveDocument(store);
+  };
+
+  const onLoadFormField = () => {
+    const result = loadDocumentList();
+    setForms(result);
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
   };
 
   const fabs = [
     {
       color: 'primary' as 'primary',
-      className: classes.fab,
       icon: <AddIcon />,
       label: 'Add',
-      onClick: OnAddFormField,
+      onClick: onAddFormField,
     },
     {
       color: 'secondary' as 'secondary',
-      className: classes.fab,
-      icon: <EditIcon />,
-      label: 'Edit',
-      onClick: OnAddFormField,
+      icon: <SaveIcon />,
+      label: 'Save',
+      onClick: onSaveFormField,
     },
     {
-      color: 'inherit' as 'inherit',
-      className: clsx(classes.fab, classes.fabGreen),
-      icon: <UpIcon />,
-      label: 'Expand',
-      onClick: OnAddFormField,
+      color: 'primary' as 'primary',
+      icon: <GetAppIcon />,
+      label: 'Save',
+      onClick: onLoadFormField,
     },
   ];
 
-  const transitionDuration = {
-    enter: theme.transitions.duration.enteringScreen,
-    exit: theme.transitions.duration.leavingScreen,
-  };
-
   return (
     <>
-      {fabs.map((fab, index) => (
-        <Zoom
-          key={fab.color}
-          in={tabId === index}
-          timeout={transitionDuration}
-          style={{
-            transitionDelay: `${
-              tabId === index ? transitionDuration.exit : 0
-            }ms`,
-          }}
-          unmountOnExit
-        >
+      <div className={classes.holder}>
+        {fabs.map((fab) => (
           <Fab
+            key={fab.label}
             aria-label={fab.label}
-            className={fab.className}
             color={fab.color}
             onClick={fab.onClick}
           >
             {fab.icon}
           </Fab>
-        </Zoom>
-      ))}
+        ))}
+      </div>
+
+      <Dialog
+        onClose={handleClose}
+        aria-labelledby="simple-dialog-title"
+        open={isOpen}
+      >
+        <DialogTitle id="simple-dialog-title">Select saved form</DialogTitle>
+        <List>
+          {forms &&
+            forms.map((form) => (
+              <ListItem key={form}>
+                <ListItemText primary={form} />
+              </ListItem>
+            ))}
+        </List>
+      </Dialog>
     </>
   );
 };
