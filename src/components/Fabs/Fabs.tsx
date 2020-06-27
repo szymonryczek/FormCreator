@@ -41,6 +41,11 @@ export const Fabs = () => {
     saveDocument(store);
   };
 
+  const handleDelete = () => {
+    const result = loadDocumentList();
+    setForms(result);
+  };
+
   const onLoadFormField = () => {
     const result = loadDocumentList();
     setForms(result);
@@ -63,7 +68,7 @@ export const Fabs = () => {
     {
       color: 'primary' as 'primary',
       icon: <GetAppIcon />,
-      label: 'Save',
+      label: 'Load',
       onClick: onLoadFormField,
     },
   ];
@@ -83,7 +88,12 @@ export const Fabs = () => {
         ))}
       </div>
 
-      <FormList forms={forms} isOpen={isOpen} handleOpen={handleOpen} />
+      <FormList
+        forms={forms}
+        isOpen={isOpen}
+        handleDelete={handleDelete}
+        handleOpen={handleOpen}
+      />
     </>
   );
 };

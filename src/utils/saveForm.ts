@@ -26,6 +26,24 @@ export const saveDocument = (store: any) => {
   }
 };
 
+export const deleteForm = (formId: string) => {
+  try {
+    const serializedState = localStorage.getItem(DoumentsNames);
+    if (serializedState === null) {
+      return undefined;
+    }
+
+    const forms = JSON.parse(serializedState);
+    forms.splice(forms.indexOf(formId), 1);
+
+    localStorage.setItem(DoumentsNames, JSON.stringify(forms));
+    localStorage.removeItem(formId);
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+};
+
 export const getForm = (formId: string) => {
   try {
     const serializedState = localStorage.getItem(formId);
